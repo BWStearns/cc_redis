@@ -23,7 +23,6 @@ fn main() {
     // let aws_metadata = "251.254.169.254";
     // let aws_metadata_port = 80;
     
-
     // Check for aws metadata
     // let resp = reqwest::blocking::get(&format!("http://{}:{}/latest/meta-data/public-ipv4", aws_metadata, aws_metadata_port)).unwrap();
     // let resp = reqwest::blocking::get(&format!("http://google.com")).unwrap();
