@@ -19,12 +19,13 @@ fn pong(mut stream: &TcpStream) {
 fn main() {
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     println!("Logs from your program will appear here!");
-
     let listener = TcpListener::bind("localhost:6379").unwrap();
-    match listener.accept() {
+    loop {
+        match listener.accept() {
         Ok((mut socket, _addr)) => {
             pong(&mut socket);
         },
         Err(e) => println!("Error: {}", e),
+        }
     }
 }
