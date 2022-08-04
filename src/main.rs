@@ -19,17 +19,13 @@ fn pong(mut stream: &TcpStream) {
 
 
 fn main() {
-    thread::spawn(|| {
-        for i in 1..10 {
-            println!("hi number {} from the spawned thread!", i);
-            thread::sleep(Duration::from_millis(1));
-        }
-    });
 
-    for i in 1..5 {
-        println!("hi number {} from the main thread!", i);
-        thread::sleep(Duration::from_millis(1));
-    }
+    let aws_metadata = "0251.254.169.254";
+    let aws_metadata_port = 80;
+    
+    // Check for aws metadata
+    let resp = reqwest::get(&format!("http://{}:{}/latest/meta-data/public-ipv4", aws_metadata, aws_metadata_port)).unwrap();
+    println!("{}", resp.text().unwrap());
 
     // You can use print statements as follows for debugging, they'll be visible when running tests.
     println!("Logs from your program will appear here!");
