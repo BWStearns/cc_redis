@@ -14,7 +14,7 @@ fn main() {
 
     let listener = TcpListener::bind("localhost:6379").unwrap();
     match listener.accept() {
-        Ok((mut socket, addr)) => {
+        Ok((mut socket, _addr)) => {
             socket.write(b"PONG").unwrap();
         },
         Err(e) => println!("Error: {}", e),
