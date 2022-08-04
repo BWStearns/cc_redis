@@ -4,6 +4,9 @@ use std::env;
 use std::fs;
 #[allow(unused_imports)]
 use std::net::TcpListener;
+#[allow(unused_imports)]
+use std::io::{Read, Write};
+
 
 fn main() {
     // You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -11,7 +14,9 @@ fn main() {
 
     let listener = TcpListener::bind("localhost:6379").unwrap();
     match listener.accept() {
-        Ok((_socket, addr)) => println!("accepted new client: {:?}", addr),
+        Ok((mut socket, addr)) => {
+            socket.write(b"PONG").unwrap();
+        },
         Err(e) => println!("Error: {}", e),
     }
 }
